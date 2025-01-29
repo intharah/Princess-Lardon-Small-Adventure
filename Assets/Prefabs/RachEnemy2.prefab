@@ -316,5 +316,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdc0f9863885434cba7b765d20bf643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ouch: {fileID: 0}
+  Ouch: {fileID: 8300000, guid: 21bd1719f99a1dd44ab240b28d290c46, type: 3}
   health: 10
