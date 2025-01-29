@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TutorialRequirement
   - Token
+  - Enemy
   layers:
   - Default
   - TransparentFX
