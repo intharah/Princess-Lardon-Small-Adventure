@@ -5,6 +5,7 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using TMPro;
 
 namespace Platformer.Mechanics
 {
@@ -34,7 +35,13 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
-        public CoinManager cm;
+
+        // Coin Manager variables :
+        // coinCount : Counter set as static for keeping value all along game 
+        // coinText : UI Text for coinCount
+        public static int coinCount;
+        // Using TextMeshPro instead of Text : call to library is TMPro and type is TextMeshProUGUI
+        public static TextMeshProUGUI coinText;
 
         bool jump;
         Vector2 move;
@@ -60,6 +67,9 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
 
             GamepadInputComponent = FindObjectOfType<GamepadInput>();
+
+            //Assign specific game object ("Coins") 
+            coinText = GameObject.Find("Coins").GetComponent<TextMeshProUGUI>();
         }
 
         protected override void Update()
@@ -83,6 +93,8 @@ namespace Platformer.Mechanics
             //base.Update();
 
             GamepadController();
+
+            coinText.text = coinCount.ToString();
         }
 
         void GamepadController()
@@ -197,21 +209,22 @@ namespace Platformer.Mechanics
         {
             // shooting logic
             // Tokens are used as bullets : check if player has sufficient items before firing
-            if(cm.coinCount > 0){
+            if(coinCount > 0){
                 GameObject cloneBullet = Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
                 audioSource.PlayOneShot(fireShoot);
                 // Bullet disappears after lifetime ends
                 Destroy(cloneBullet, 0.7f);
                 // Decrease tokens counter
-                cm.coinCount--;
+                coinCount--;
             }
         }
 
+        // Counter system for score
         void OnTriggerEnter2D(Collider2D other)
         {
             if(other.gameObject.CompareTag("Token"))
             {
-                cm.coinCount++;
+                coinCount++;
             }
         }
     }
