@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Platformer.Gameplay;
 using UnityEngine;
+using static Platformer.Core.Simulation;
 
 public class Boss : MonoBehaviour
 {
@@ -25,6 +27,13 @@ public class Boss : MonoBehaviour
             transform.localScale = flipped;
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;        
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Schedule<PlayerDeath>();
         }
     }
 }

@@ -8,15 +8,27 @@ public class BossWeapon : MonoBehaviour
     public Transform bulletPos;
 
     private float timer;
+    private GameObject player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Update()
     {
-        timer += Time.deltaTime;
+        
+        float distance = Vector2.Distance(transform.position,player.transform.position);
 
-        if (timer > 2f)
+        if (distance < 10f)
         {
-            timer = 0;
-            Shoot();
+            timer += Time.deltaTime;
+
+            if (timer > 2f)
+            {
+                timer = 0;
+                Shoot();
+            }
         }
     }
 
