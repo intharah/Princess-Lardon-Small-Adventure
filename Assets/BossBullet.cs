@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
+using Platformer.Mechanics;
 
 public class BossBullet : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BossBullet : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     private float timer;
+    public int damage = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +37,17 @@ public class BossBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if(other.gameObject.CompareTag("Player"))
+        Debug.Log(hitInfo.name);
+
+        PlayerController playerController = hitInfo.GetComponent<PlayerController>();
+
+        // Increase Damage Player Health
+        if (playerController != null && hitInfo.name == "Rach")
         {
-            //Schedule<PlayerDeath>();
-            Destroy(gameObject); 
+            playerController.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

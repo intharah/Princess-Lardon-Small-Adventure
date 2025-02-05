@@ -57,6 +57,16 @@ namespace Platformer.Mechanics
     
         public Transform FirePoint;
         public GameObject BulletPrefab;
+        public float rachHealth = 100;
+        public float maxHealth = 1f;
+        private float convertHealth;
+        [SerializeField] FloatingHealthBar healthBar;
+
+        private void Start()
+        {
+            convertHealth = maxHealth;
+            healthBar.UpdateHealthBar(convertHealth, maxHealth);
+        }
 
         void Awake()
         {
@@ -70,6 +80,8 @@ namespace Platformer.Mechanics
 
             //Assign specific game object ("Coins") 
             coinText = GameObject.Find("Coins").GetComponent<TextMeshProUGUI>();
+
+            healthBar = GetComponentInChildren<FloatingHealthBar>();
         }
 
         protected override void Update()
@@ -203,6 +215,7 @@ namespace Platformer.Mechanics
             m_FacingRight = !m_FacingRight;
 
             transform.Rotate(0f,180f,0f);
+            healthBar.transform.Rotate(0f,180f,0f);
         }
 
         void Shoot()
@@ -225,6 +238,25 @@ namespace Platformer.Mechanics
             if(other.gameObject.CompareTag("Token"))
             {
                 coinCount++;
+            }
+        }
+
+        public void TakeDamage (int damage)
+        {
+            rachHealth -= damage;
+            convertHealth = rachHealth / 100;
+
+            if (healthBar != null)
+            {
+                healthBar.UpdateHealthBar(convertHealth, maxHealth);
+            }
+
+            Debug.Log(rachHealth);
+            Debug.Log(convertHealth);
+
+            if (rachHealth <= 0)
+            {
+                //Die();
             }
         }
     }

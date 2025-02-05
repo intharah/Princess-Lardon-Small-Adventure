@@ -12,9 +12,4 @@ public class FloatingHealthBar : MonoBehaviour
     {
         slider.value = currentValue / maxValue;
     }
-
-    void Update()
-    {
-
-    }
 }
