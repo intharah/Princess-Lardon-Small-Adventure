@@ -39,7 +39,7 @@ namespace Platformer.Mechanics
         // Coin Manager variables :
         // coinCount : Counter set as static for keeping value all along game 
         // coinText : UI Text for coinCount
-        public static int coinCount;
+        public static int coinCount = 10;
         // Using TextMeshPro instead of Text : call to library is TMPro and type is TextMeshProUGUI
         public static TextMeshProUGUI coinText;
 

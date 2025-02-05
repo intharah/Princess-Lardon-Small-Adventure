@@ -3,12 +3,31 @@ using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
+    AudioSource _audio;
+    public AudioClip Ouch;
     public Transform player;
 
     public bool isFlipped = false;
+    public float health = 100;
+    public float maxHealth = 1f;
+    private float convertHealth;
+    [SerializeField] FloatingHealthBar healthBar;
+
+    private void Start()
+    {
+        convertHealth = maxHealth;
+        healthBar.UpdateHealthBar(convertHealth, maxHealth);
+    }
+
+    void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+    }
 
     // Start is called before the first frame update
     public void LookAtPlayer()
@@ -29,11 +48,35 @@ public class Boss : MonoBehaviour
             isFlipped = true;        
         }
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+    public void TakeDamage (int damage)
     {
-        if(other.gameObject.CompareTag("Player"))
+        health -= damage;
+        convertHealth = health / 100;
+
+        if (healthBar != null)
         {
-            Schedule<PlayerDeath>();
+            healthBar.UpdateHealthBar(convertHealth, maxHealth);
         }
+
+        Debug.Log(health);
+        Debug.Log(convertHealth);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        // Remove Boss Weapon to stop firing 
+        GetComponent<BossWeapon>().enabled = false;
+
+        // Play death clip 
+        _audio.clip = Ouch;
+        _audio.Play();
+        
+        //Destroy(gameObject);
     }
 }

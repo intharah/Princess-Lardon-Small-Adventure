@@ -19,12 +19,23 @@ public class Bullet : MonoBehaviour
         Debug.Log(hitInfo.name);
 
         Enemy enemy = hitInfo.GetComponent<Enemy>();
+        Boss boss = hitInfo.GetComponent<Boss>();
 
+        // Kill Standard Enemies
         if (enemy != null && hitInfo.name == "Enemy")
         {
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
+
+        // Increase Damage Boss Health
+        if (boss != null && hitInfo.name == "Scutigerard")
+        {
+            boss.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        // Destroy Bullet When Hitting Level
         if (hitInfo.name == "Level")
         {
             Destroy(gameObject);

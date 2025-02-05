@@ -39,7 +39,7 @@ public class BossBullet : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Schedule<PlayerDeath>();
+            //Schedule<PlayerDeath>();
             Destroy(gameObject); 
         }
     }
