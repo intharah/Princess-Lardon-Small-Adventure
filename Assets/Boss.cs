@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour
     private float convertHealth;
     [SerializeField] FloatingHealthBar healthBar;
 
+
     private void Start()
     {
         convertHealth = maxHealth;

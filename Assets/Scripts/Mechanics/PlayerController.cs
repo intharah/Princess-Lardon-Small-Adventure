@@ -251,12 +251,11 @@ namespace Platformer.Mechanics
                 healthBar.UpdateHealthBar(convertHealth, maxHealth);
             }
 
-            Debug.Log(rachHealth);
-            Debug.Log(convertHealth);
 
             if (rachHealth <= 0)
             {
-                //Die();
+                //Restart scene properly
+                Application.LoadLevel(Application.loadedLevel);
             }
         }
     }

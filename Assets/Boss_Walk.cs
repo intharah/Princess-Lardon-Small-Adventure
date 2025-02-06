@@ -34,6 +34,9 @@ public class Boss_Walk : StateMachineBehaviour
             {
                 animator.SetTrigger("Attack");
             }
+        } else if (boss.health == 0)
+        {
+            animator.Play("ScutiIdle");
         }
     }
 
