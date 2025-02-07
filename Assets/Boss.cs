@@ -16,12 +16,15 @@ public class Boss : MonoBehaviour
     public float maxHealth = 1f;
     private float convertHealth;
     [SerializeField] FloatingHealthBar healthBar;
-
+    public GameObject explosion;
+    private GameObject boss;
 
     private void Start()
     {
         convertHealth = maxHealth;
         healthBar.UpdateHealthBar(convertHealth, maxHealth);
+
+        boss = GameObject.FindWithTag("Boss");
     }
 
     void Awake()
@@ -67,19 +70,19 @@ public class Boss : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            // Remove Boss Weapon to stop firing 
+            // GetComponent<BossWeapon>().enabled = false;
+
+            // Add Explosion Animation
+            GameObject exploded = Instantiate(explosion, transform.position, Quaternion.identity);
+
+
+            // Play death clip 
+            //_audio.clip = Ouch;
+            //_audio.Play();
+            
+            Destroy(boss);
+            Destroy(exploded, 0.5f);
         }
-    }
-
-    void Die()
-    {
-        // Remove Boss Weapon to stop firing 
-        GetComponent<BossWeapon>().enabled = false;
-
-        // Play death clip 
-        _audio.clip = Ouch;
-        _audio.Play();
-        
-        //Destroy(gameObject);
     }
 }
