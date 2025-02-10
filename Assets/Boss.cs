@@ -4,6 +4,7 @@ using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 using UnityEngine.UI;
+using Platformer.Mechanics;
 
 public class Boss : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Boss : MonoBehaviour
     [SerializeField] FloatingHealthBar healthBar;
     public GameObject explosion;
     private GameObject boss;
+    public int playerDamage = 10;
 
     private void Start()
     {
@@ -83,6 +85,19 @@ public class Boss : MonoBehaviour
             
             Destroy(boss);
             Destroy(exploded, 0.5f);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Debug.Log(hitInfo.name);
+
+        PlayerController playerController = hitInfo.GetComponent<PlayerController>();
+
+        // Increase Damage Player Health
+        if (playerController != null && hitInfo.name == "Rach")
+        {
+            playerController.TakeDamage(playerDamage);
         }
     }
 }
