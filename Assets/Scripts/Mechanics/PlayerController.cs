@@ -6,6 +6,7 @@ using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace Platformer.Mechanics
 {
@@ -39,7 +40,7 @@ namespace Platformer.Mechanics
         // Coin Manager variables :
         // coinCount : Counter set as static for keeping value all along game 
         // coinText : UI Text for coinCount
-        public static int coinCount = 10;
+        public static int coinCount;
         // Using TextMeshPro instead of Text : call to library is TMPro and type is TextMeshProUGUI
         public static TextMeshProUGUI coinText;
 
@@ -107,6 +108,24 @@ namespace Platformer.Mechanics
             GamepadController();
 
             coinText.text = coinCount.ToString();
+
+            LoadNextSceneWhenBossDies();
+        }
+
+        void LoadNextSceneWhenBossDies()
+        {
+            GameObject boss = GameObject.FindWithTag("Boss");
+            Scene activeScene = SceneManager.GetActiveScene();
+
+            if (boss == null && activeScene.name == "Scene3")
+            {
+                Invoke("LoadNextScene", 3.0f);
+            }
+        }
+
+        void LoadNextScene()
+        {
+            SceneManager.LoadScene("Outro");
         }
 
         void GamepadController()
