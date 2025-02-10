@@ -2,7 +2,7 @@
 
 ## Description
 
-Bienvenue dans notre projet de jeu vidéo 2D de type platformer, conçu pour offrir une expérience unique et personnalisée pour une demande de mariage originale. Ce jeu combine des éléments graphiques en pixel art créés avec Aseprite et un environnement récupéré sur itch.io via une librairie 2D.
+Bienvenue dans mon projet de jeu vidéo 2D de type platformer, conçu pour offrir une expérience unique et personnalisée pour une demande de mariage originale. Ce jeu combine des éléments graphiques en pixel art créés avec Aseprite et un environnement récupéré sur itch.io via une librairie 2D.
 
 ## Caractéristiques du Jeu
 
