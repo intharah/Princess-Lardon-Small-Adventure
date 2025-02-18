@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed = 5f;
     public Rigidbody2D rb;
     public int damage = 10;
+    public int bossDamage = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class Bullet : MonoBehaviour
         // Increase Damage Boss Health
         if (boss != null && hitInfo.name == "Scutigerard")
         {
-            boss.TakeDamage(damage);
+            boss.TakeDamage(bossDamage);
             Destroy(gameObject);
         }
 

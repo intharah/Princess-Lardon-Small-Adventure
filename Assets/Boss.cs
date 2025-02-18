@@ -13,7 +13,7 @@ public class Boss : MonoBehaviour
     public Transform player;
 
     public bool isFlipped = false;
-    public float health = 100;
+    public float health;
     public float maxHealth = 1f;
     private float convertHealth;
     [SerializeField] FloatingHealthBar healthBar;
