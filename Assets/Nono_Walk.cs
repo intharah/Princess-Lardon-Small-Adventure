@@ -5,6 +5,7 @@ using UnityEngine;
 public class Nono_Walk : StateMachineBehaviour
 {
     public float speed = 1.0f;
+    private float contactRange = 7.0f;
     Transform player;
     Rigidbody2D rb;
     NonoController nono;
@@ -24,6 +25,10 @@ public class Nono_Walk : StateMachineBehaviour
 
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+
+        if (Vector2.Distance(player.position, rb.position) <= contactRange)
+        {
+            rb.MovePosition(newPos);
+        }
     }
 }
