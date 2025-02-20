@@ -9,6 +9,7 @@ using Platformer.Mechanics;
 public class NonoController : MonoBehaviour
 {
     public Transform player;
+    public Animator animator;
 
     public bool isFlipped = false;
 
@@ -33,6 +34,24 @@ public class NonoController : MonoBehaviour
             transform.localScale = flipped;
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;        
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        NonoController nonoController = other.GetComponent<NonoController>();
+     
+        if (other.name == "CheckpointNono")
+        {
+                Debug.Log(other.name);
+                if (animator != null)
+                { 
+                    animator.Play("NonoDeath", -1, 0f); // Play once 
+                }
+                else
+                {
+                    Debug.LogError("Animator non assigné");
+                }
         }
     }
 }
