@@ -5,7 +5,7 @@ using UnityEngine;
 public class Nono_Walk : StateMachineBehaviour
 {
     public float speed = 1.0f;
-    private float contactRange = 7.0f;
+    private float contactRange = 4.5f;
     Transform player;
     Rigidbody2D rb;
     NonoController nono;
