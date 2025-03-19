@@ -46,7 +46,7 @@ Un grand merci à tous ceux qui ont contribué à ce projet et à ceux qui ont i
 
 ## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à me contacter sur mon instagram @aperol.sprites
+Pour toute question ou suggestion, n'hésitez pas à me contacter sur mon instagram @aperol.sprites ou sur github
 
 ---
 
