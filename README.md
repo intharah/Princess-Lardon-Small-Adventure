@@ -38,7 +38,7 @@ L'objectif principal de ce projet est de créer une demande de PACS personnalis�
 - **Développement** : Intharah (C# sous VS Code)
 - **Graphismes et animations** : Intharah (Créés avec Aseprite)
 - **Environnement** : Récupéré sur itch.io
-- **Musique et Effets Sonores** : [Crédits si applicable]
+- **Musique et Effets Sonores** : three-red-hearts
 
 ## Remerciements
 
